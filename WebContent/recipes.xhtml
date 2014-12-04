@@ -2,6 +2,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	template="template/template.xhtml">
 
 	<ui:define name="page_title">
@@ -12,28 +13,31 @@
 	<ui:define name="content">
 		<h3>Recipe List</h3>
 		<p><a href="add-recipe.jsf">Add recipe</a></p>
-		
 		<h:outputText rendered="#{statusBean.success}" value="#{statusBean.message}"/>
-		
-		<h:dataTable value="#{recipeControlerBean.loadAllRecipe()}" var="recipeModelBean">
-		   <h:column>    				
-		      <f:facet name="header">Title</f:facet>    				
-		      #{recipeModelBean.getTitle()}
-		   </h:column>
-		   <h:column>
-		      <f:facet name="header">Expertise</f:facet>
-		      #{recipeModelBean.getExpertise()}
-		   </h:column>
-		   <h:column>
-		      <f:facet name="header">Duration</f:facet>
-		      #{recipeModelBean.getDuration()}
-		   </h:column>
-		   <h:column>
-		      <f:facet name="header">Number of peole</f:facet>
-		      #{recipeModelBean.getNbpeople()}
-		   </h:column>
-		</h:dataTable>
-		
+		<!-- <c:forEach items="#{recipeControlerBean.recipeListModel}" var="recipe">
+			#{recipe.title}
+		</c:forEach> -->
+		<h:form>
+			
+	 	 	<h:dataTable value="#{recipeControlerBean.recipeListModel}" var="recipeModelBean">
+			   <h:column>    				
+			      <f:facet name="header">Title</f:facet>    				
+			      #{recipeModelBean.getTitle()}
+			   </h:column>
+			   <h:column>
+			      <f:facet name="header">Expertise</f:facet>
+			      #{recipeModelBean.getExpertise()}
+			   </h:column>
+			   <h:column>
+			      <f:facet name="header">Duration</f:facet>
+			      #{recipeModelBean.getDuration()}
+			   </h:column>
+			   <h:column>
+			      <f:facet name="header">Number of peole</f:facet>
+			      #{recipeModelBean.getNbpeople()}
+			   </h:column>
+			</h:dataTable>
+		</h:form>
 		
 		
 	</ui:define>
