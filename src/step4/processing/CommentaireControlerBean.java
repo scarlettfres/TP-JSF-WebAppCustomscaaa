@@ -2,7 +2,16 @@ package step4.processing;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
+import java.util.TimeZone;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+
+
+
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -30,10 +39,18 @@ public class CommentaireControlerBean
 	public String addCommentaire (CommentaireBean commentaire)
 	{
 		CommentaireBean com;
+		
+		String format = "dd/MM/yy H:mm:ss";
+
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format );
+		java.util.Date date = new java.util.Date();
+
+		System.out.println( formater.format( date ) ); 
+		String strdate = (String)formater.format( date );
 		com = new CommentaireBean(
 				commentaire.getTitleRecipe(),
 				commentaire.getLoginUser(),
-				commentaire.getDate(),
+				strdate,
 				commentaire.getRate(),
 				commentaire.getMessage());
 		
@@ -53,10 +70,10 @@ public class CommentaireControlerBean
 		 Map<String, Object> sessionMap = externalContext.getSessionMap();
 		 sessionMap.remove("commentaires");// On efface la derniere sessionmap de commentaires pour créer une nouvelle 		
 		 sessionMap.put("commentaires", liste_commentaire);
-		 for (int i=0;i<liste_commentaire.size();i++)
+		/* for (int i=0;i<liste_commentaire.size();i++)
 		 {
 			System.out.println("Message =  "+liste_commentaire.get(i).getMessage());
-		 }
+		 }*/
 		
 	}
 }
