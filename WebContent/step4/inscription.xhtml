@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Step2: Form</title>
+</head>
+<body>
+	<h1>Login Page</h1>	
+	<h:form>
+		<table border="0">
+			<tr>
+				<td>First Name</td>
+				<td><h:inputText id="firstname" value="#{userBean.firstname}"
+						required="true"  requiredMessage="Firstname is required">
+						<f:validator validatorId="NameValidator"/>
+					</h:inputText>
+					<td><h:message for="username" showDetail="true" style="color:red" />
+					</td>
+				</td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td><h:inputText id="lastname" value="#{userBean.lastname}"
+						required="true"  requiredMessage="Lastname is required">
+						<f:validator validatorId="NameValidator"/>
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td>Put your age</td>
+				<td><h:inputText id="age" value="#{userBean.age}"
+						required="true"  requiredMessage="Age is required">
+						<f:validator validatorId="AgeValidator"/>
+					</h:inputText></td>
+					
+			</tr>
+			<tr>
+				<td>Email Address</td>
+				<td><h:inputText id="email" value="#{userBean.email}"
+						required="true" requiredMessage="Email is required">
+						<f:validator validatorId="MailValidator"/>
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td>Login</td>
+				<td><h:inputText id="login" value="#{userBean.login}"
+						required="true"  requiredMessage="login is required">
+						<f:validator validatorId="LoginValidator"/>
+					</h:inputText></td>
+			</tr>
+			
+			<tr>
+				<td>Password</td>
+				<td><h:inputSecret id ="pwd1" validator="#{pwdValidatorBean.validateField}" 
+						required="true" requiredMessage="Password1 is required">
+						
+					</h:inputSecret></td>
+			</tr>
+			
+			<tr>
+				<td>Re-enter Password</td>
+				<td><h:inputSecret id="pwd2" validator="#{pwdValidatorBean.validateField}" value="#{userBean.pwd}"
+						required="true" requiredMessage="Password2 is required">
+					</h:inputSecret></td>
+			</tr>
+		
+			
+			<tr>
+				<td></td>
+				<td><h:commandButton value="OK"
+						action="#{userControlerBean.inscriptionUser(userBean)}" /></td>
+			</tr>
+		</table>
+	</h:form>
+</body>
+</html>

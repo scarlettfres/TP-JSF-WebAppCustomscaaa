@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Step2: Form</title>
+</head>
+<body>
+	<h1>Login Page</h1>
+	
+	
+	
+	
+	<!--  <ui:decorate template="template/commentaireTemplate.xhtml">
+    <ui:param name="titleRecipe" value="une recette" />
+    </ui:decorate>-->
+
+
+
+	<h:form>
+		<table border="0">
+			<tr>
+				<td>titlerecipe</td>
+				<td><h:inputText id="titlerecipe"
+						value="#{commentaireBean.titleRecipe}" required="true"
+						requiredMessage="Firstname is required">
+					</h:inputText></td>
+					
+					
+					
+
+			</tr>
+			<tr>
+				<td>Loginuser</td>
+				<td><h:inputText id="loginuser"
+						value="#{commentaireBean.loginUser}" required="true"
+						requiredMessage="Lastname is required">
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td>rate</td>
+				<td><h:inputText id="rate" value="#{commentaireBean.rate}"
+						required="true" requiredMessage="Age is required">
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td>message</td>
+				<td><h:inputText id="message"
+						value="#{commentaireBean.message}" required="true"
+						requiredMessage="Email is required">
+					</h:inputText></td>
+			</tr>
+
+
+			<tr>
+				<td></td>
+				<td><h:commandButton value="OK"
+						action="#{commentaireControlerBean.addCommentaire(commentaireBean)}" >
+						<f:ajax execute="@form" listener="#{commentaireControlerBean.loadAffichage('ff')}" />
+					</h:commandButton>
+				</td>
+			</tr>
+		</table>
+	</h:form>
+	
+		
+	<ui:decorate template="template/commentaireTemplate.xhtml"> </ui:decorate>
+		
+	
+</body>
+</html>

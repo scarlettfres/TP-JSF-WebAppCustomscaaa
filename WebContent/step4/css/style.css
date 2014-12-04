@@ -1,0 +1,42 @@
+#main_menu
+{
+	padding: 0px;
+	position: relative;
+	list-style: none;
+	text-align: center;
+}
+
+#main_menu li
+{
+	display: inline-block;
+	height: 150px;
+	width: 20%;
+	background-color: grey;
+	text-align: center;
+	padding-top: 145px;
+}
+ 
+#login
+{
+	top: 0px;
+  
+}
+
+
+
+#main_menu li:hover
+{
+	background-color: white;
+}
+
+#welcome_img
+{
+	text-align: center;
+}
+
+#user_login
+{
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
+}

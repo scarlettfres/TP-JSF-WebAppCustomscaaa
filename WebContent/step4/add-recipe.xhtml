@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="template/template.xhtml">
+
+	<ui:define name="page_title">
+		<h2>Add a recipe</h2>
+		
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form id="recipe_form">
+	 		<h5>Title <h:inputText type="text" name="title" value="#{recipeSubmissionModelBean.title}" /> </h5>
+	 		<h5>Description <h:inputText type="text" name="description" value="#{recipeSubmissionModelBean.description}" /> </h5>
+	 		<h5>Expertise <h:inputText type="text" name="expertise" value="#{recipeSubmissionModelBean.expertise}" /> </h5>
+	 		<h5>Duration <h:inputText type="text" name="duration" value="#{recipeSubmissionModelBean.duration}" /> </h5>
+	 		<h5>Number of people <h:inputText type="text" name="nbpeople" value="#{recipeSubmissionModelBean.nbpeople}" /> </h5>
+	 		<h5>Type <h:inputText type="text" name="type" value="#{recipeSubmissionModelBean.type}" /> </h5>
+	 		<h:commandButton value="submit" action="#{recipeControlerBean.checkAndAddRecipe(recipeSubmissionModelBean)}">
+	 		
+	 		</h:commandButton>
+		</h:form>
+		
+		<h:outputText rendered="#{!statusBean.success}">#{statusBean.message}</h:outputText>
+		
+	</ui:define>
+	
+</ui:composition>

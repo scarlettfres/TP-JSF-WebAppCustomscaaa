@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<title>let's cook</title>
+</head>
+	
+	
+	<h:body>
+    	<div class="header">
+    		<h1>Let's Cook!</h1>
+    		<ui:insert name="page_title"></ui:insert>
+    		
+    		<div id="login" class = "login">
+    		<ui:insert name="login"></ui:insert>
+    		
+    		
+    		
+    		<ui:fragment rendered="#{loggedUser.login != null}">
+    		<ui:decorate template="loginTemplate.xhtml"> </ui:decorate>
+    		</ui:fragment>
+    		
+			<ui:fragment rendered="#{loggedUser.login == null}">
+			<ui:decorate template="logoutTemplate.xhtml"> </ui:decorate>
+			</ui:fragment>
+    	
+    	</div>
+    	</div>
+    	<div class  = "section">
+    		<ui:insert name="content"></ui:insert>
+    	</div>
+    	
+    	
+    	
+    	
+    	<div class = "footer">
+    		<h6> blablabla favier, scarlett  </h6>
+    	</div>
+    	
+    </h:body>
+	
+</html>

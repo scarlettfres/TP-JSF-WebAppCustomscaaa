@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="template/template.xhtml">
+
+	<ui:define name="page_title">
+		<h1>Recipes</h1>
+		
+	</ui:define>
+	
+	<ui:define name="content">
+		<h3>Recipe List</h3>
+		<p><a href="add-recipe.jsf">Add recipe</a></p>
+		
+		<h:outputText rendered="#{statusBean.success}" value="#{statusBean.message}"/>
+		
+		<h:dataTable value="#{recipeControlerBean.loadAllRecipe()}" var="recipeModelBean">
+		   <h:column>    				
+		      <f:facet name="header">Title</f:facet>    				
+		      #{recipeModelBean.getTitle()}
+		   </h:column>
+		   <h:column>
+		      <f:facet name="header">Expertise</f:facet>
+		      #{recipeModelBean.getExpertise()}
+		   </h:column>
+		   <h:column>
+		      <f:facet name="header">Duration</f:facet>
+		      #{recipeModelBean.getDuration()}
+		   </h:column>
+		   <h:column>
+		      <f:facet name="header">Number of peole</f:facet>
+		      #{recipeModelBean.getNbpeople()}
+		   </h:column>
+		</h:dataTable>
+		
+		
+		
+	</ui:define>
+	
+</ui:composition>

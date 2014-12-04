@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<title>let's cook</title>
+</head>
+	
+	
+	<h:body>
+    	<div class="logout">
+    		
+    		<ui:insert name="logout"></ui:insert>
+    		
+    		<h:form>
+				<table border="0">
+				<tr>
+					<td>Your Login</td>
+					<td><h:inputText id="userlogin" value="#{loginBean.login}"
+							required="true" requiredMessage="Login is required">
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td>Your Password</td>
+					<td><h:inputSecret value="#{loginBean.pwd}" 
+							required="true" requiredMessage="Password is required"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><h:commandButton value="OK"
+							action="#{userControlerBean.checkUser(loginBean)}" /></td>
+				</tr>
+				
+				</table>
+			</h:form>
+			
+			 <h:form>
+					<td><h:commandButton value="S'inscrire"
+							action="#{userControlerBean.loadInscription()}" /></td>
+			</h:form>
+    	
+    	</div>
+    	
+</h:body>
+</html>
