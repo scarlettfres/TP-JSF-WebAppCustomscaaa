@@ -95,5 +95,126 @@ public class RecipesDao {
 
 		return recipeList;
 	}
+	
+	public RecipeModelBean getRecipe(String Name)
+	{
+		RecipeModelBean desiredRecipe = new RecipeModelBean();
+
+		// Cr�ation de la requ�te
+		java.sql.Statement query;
+
+		try {
+		
+		// create connection
+		connection = java.sql.DriverManager.getConnection("jdbc:mysql://"
+				+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+
+			// Creation de l'�l�ment de requ�te
+			query = connection.createStatement();
+
+			// Executer puis parcourir les r�sultats
+			java.sql.ResultSet rs = query
+					.executeQuery("SELECT * FROM recipes WHERE title = '"+Name+"';");
+
+				RecipeModelBean recipe = new RecipeModelBean(
+						rs.getString("title"), rs.getString("description"),
+						rs.getInt("expertise"), rs.getInt("duration"),
+						rs.getInt("nbpeople"), rs.getString("type"));
+				System.out.println("Recipe : " + recipe);
+
+			rs.close();
+			query.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return desiredRecipe;
+	}
+	
+	public ArrayList<RecipeModelBean> searchRecipes( RecipeModelBean SearchedBean ) {
+		ArrayList<RecipeModelBean> recipeList = new ArrayList<RecipeModelBean>();
+
+		// Cr�ation de la requ�te
+		java.sql.Statement query;
+
+		try {
+		
+		// create connection
+		connection = java.sql.DriverManager.getConnection("jdbc:mysql://"
+				+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+
+			// Creation de l'�l�ment de requ�te
+			query = connection.createStatement();
+			
+			// Construction de la requete
+			String requete = "SELECT * FROM recipes";
+			
+			if( SearchedBean.getExpertise() != 0 || SearchedBean.getTitle() != "" || SearchedBean.getDuration() != 0 || SearchedBean.getNbpeople() != 0 || SearchedBean.getType() != "" )
+			{
+				 requete += " WHERE ";
+				 if(SearchedBean.getExpertise() != 0){
+					 requete += "expertise = '" + SearchedBean.getExpertise() + "'";
+				 }
+				 else
+				 {
+					 requete += " 1=1 ";
+				 }
+				 if(SearchedBean.getTitle() != ""){
+					 requete += " AND title = '" + SearchedBean.getTitle() + "'";
+				 }
+				 else
+				 {
+					 requete += " AND 1=1 ";
+				 }
+				 if(SearchedBean.getDuration() != 0){
+					 requete += " AND duration = '" + SearchedBean.getDuration() + "'";
+				 }
+				 else
+				 {
+					 requete += " AND 1=1 ";
+				 }
+				 if(SearchedBean.getNbpeople() != 0){
+					 requete += " AND nbpeople = '" + SearchedBean.getNbpeople() + "'";
+				 }
+				 else
+				 {
+					 requete += " AND 1=1 ";
+				 }
+				 if(SearchedBean.getType() != ""){
+					 requete += " AND type = '" + SearchedBean.getType() + "'";
+				 }
+				 else
+				 {
+					 requete += " AND 1=1 ";
+				 }
+			}
+			requete += ";";
+			System.out.println("Requete : " + requete);
+			// Executer puis parcourir les r�sultats
+			java.sql.ResultSet rs = query
+					.executeQuery( requete );
+			while (rs.next()) {
+				// Cr�ation de  la recette
+				RecipeModelBean recipe = new RecipeModelBean(
+						rs.getString("title"), rs.getString("description"),
+						rs.getInt("expertise"), rs.getInt("duration"),
+						rs.getInt("nbpeople"), rs.getString("type"));
+				System.out.println("Recipe : " + recipe);
+
+				// ajout de la recette r�cup�r�e � la liste
+				recipeList.add(recipe);
+			}
+			rs.close();
+			query.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return recipeList;
+	}
 
 }

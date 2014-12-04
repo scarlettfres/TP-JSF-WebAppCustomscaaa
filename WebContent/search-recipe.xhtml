@@ -12,7 +12,7 @@
 	
 	<ui:define name="content">
 		<h:form id="recipe_form">
-			<fieldset class="recipe-form-main-fieldset">
+			<fieldset>
 				<div class="recipe-form-item">
 		 			<label>Title</label>
 		 			<h:inputText type="text" name="title" value="#{recipeModelBean.title}" />
@@ -40,10 +40,9 @@
 					   	<f:selectItem itemValue="Dessert" itemLabel="Dessert" />
 					</h:selectOneMenu>
 				</div>
+				<label>Description</label> <h:inputText type="text" name="description" value="#{recipeModelBean.description}" />
+				<h:commandButton value="submit" action="#{recipeModelBean.Search()}"></h:commandButton>
 	 		</fieldset>
-	 		<fieldset class="recipe-form-right-fieldset"><label>Description</label> <h:inputText type="text" name="description" value="#{recipeModelBean.description}" /></fieldset>
-	 		<fieldset class="recipe-form-bottom-fieldset"><h:commandButton value="submit" action="#{recipeModelBean.Search()}"></h:commandButton></fieldset>
-	 		
 	 		
 		</h:form>
 		

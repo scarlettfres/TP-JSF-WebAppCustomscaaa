@@ -1,6 +1,7 @@
 package step4.processing;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ApplicationScoped;
@@ -11,27 +12,29 @@ import javax.faces.context.FacesContext;
 import step4.model.RecipeModelBean;
 import step4.dao.fabric.DaoFabric;
 import step4.dao.instance.RecipesDao;
-import step4.model.RecipeListModelBean;
-import step4.model.RecipeModelBean;
 import step4.model.RecipeSubmissionModelBean;
 import step4.model.StatusBean;
-import step4.model.UserSubmissionModelBean;
 
 @ManagedBean
 @ApplicationScoped
 
-public class RecipeControlerBean 
+public class RecipeControlerBean
 {
 	private RecipesDao recipeDao;
-	
+	private ArrayList<RecipeModelBean> recipeListModel;
+	private ArrayList<RecipeModelBean> searchedList;
+
+
 	public RecipeControlerBean() 
 	{
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();
 	}
 	
 	
-	public void loadAllRecipe()
+	
+/*	public void loadAllRecipe()
 	{
+		
 		ArrayList<RecipeModelBean> list = this.recipeDao.getAllRecipes();
 		
 		RecipeListModelBean recipeList=new RecipeListModelBean();
@@ -48,7 +51,9 @@ public class RecipeControlerBean
 		//place la liste de recette dans l'espace de m�moire de JSF
 		sessionMap.put("recipeList", recipeList);
 		
-	}
+		
+		
+	}*/
 	
 	public String checkAndAddRecipe(RecipeSubmissionModelBean recipeSubmitted)
 	{
@@ -79,4 +84,42 @@ public class RecipeControlerBean
 		sessionMap.put("statusBean", statusBean);
 		return returnPage;
 	}
+	
+	public String showDetailedRecipe(String recipeName)
+	{
+		
+		String returnPage = "recipe-details";
+		
+		RecipeModelBean desiredRecipe = new RecipeModelBean();
+
+		desiredRecipe = this.recipeDao.getRecipe(recipeName);
+				
+		return returnPage;
+	}
+
+
+
+	public ArrayList<RecipeModelBean> getRecipeListModel() {
+		recipeListModel = this.recipeDao.getAllRecipes();
+		System.out.println("bouse");
+		return recipeListModel;
+	}
+
+
+
+	public void setRecipeListModel(ArrayList<RecipeModelBean> recipeListModel) {
+		this.recipeListModel = recipeListModel;
+	}
+	
+	public ArrayList<RecipeModelBean> getSearchedList( RecipeModelBean searchedBean) {
+		searchedList = this.recipeDao.searchRecipes( searchedBean );
+		return searchedList;
+	}
+
+
+
+	public void setSearchedList(ArrayList<RecipeModelBean> searchedList) {
+		this.searchedList = searchedList;
+	}
+
 }
