@@ -12,24 +12,37 @@
 	
 	<ui:define name="content">
 		<h:form id="recipe_form">
-			<fieldset>
-		 		<label>Title</label><h:inputText type="text" name="title" value="#{recipeModelBean.title}" />
-		 		<label>Expertise</label> <p:rating stars="5" value="#{recipeModelBean.expertise}"/>
-		 		<label>Duration</label> <p:spinner min="5" max="100" stepFactor="5" value="#{recipeModelBean.duration}"/>
-		 		<label>Number of people</label>
-						<div id="slider_wrapper">
+			<fieldset class="recipe-form-main-fieldset">
+				<div class="recipe-form-item">
+		 			<label>Title</label>
+		 			<h:inputText type="text" name="title" value="#{recipeModelBean.title}" />
+		 		</div>
+		 		<div class="recipe-form-item">
+		 			<label>Expertise</label>
+		 			<p:rating stars="5" value="#{recipeModelBean.expertise}"/>
+		 		</div>
+		 		<div class="recipe-form-item">
+		 			<label>Duration</label>
+		 			<p:spinner min="5" max="100" stepFactor="5" value="#{recipeModelBean.duration}"/>
+		 		</div>
+		 		<div class="recipe-form-item">
+		 			<label>Number of people</label>
+					<div id="slider_wrapper">
 						<p:inputText id="fInput1" value="#{recipeModelBean.nbpeople}"/>
 						<p:slider minValue="1" maxValue="10" for="fInput1" id="recipe_slider" styleClass="width-100"/>
 					</div>
-		 		<label>Type</label>
-		 		<h:selectOneMenu value="#{recipeModelBean.type}">
-				   	<f:selectItem itemValue="Entrée" itemLabel="Entrée" />
-				   	<f:selectItem itemValue="Plat" itemLabel="Plat" />
-				   	<f:selectItem itemValue="Dessert" itemLabel="Dessert" />
-				</h:selectOneMenu>
+				</div>
+				<div class="recipe-form-item">
+			 		<label>Type</label>
+			 		<h:selectOneMenu value="#{recipeModelBean.type}">
+					   	<f:selectItem itemValue="Entrée" itemLabel="Entrée" />
+					   	<f:selectItem itemValue="Plat" itemLabel="Plat" />
+					   	<f:selectItem itemValue="Dessert" itemLabel="Dessert" />
+					</h:selectOneMenu>
+				</div>
 	 		</fieldset>
-	 		<fieldset><label>Description</label> <h:inputText type="text" name="description" value="#{recipeModelBean.description}" /></fieldset>
-	 		<fieldset><h:commandButton value="submit" action="#{recipeModelBean.Search()}"></h:commandButton></fieldset>
+	 		<fieldset class="recipe-form-right-fieldset"><label>Description</label> <h:inputText type="text" name="description" value="#{recipeModelBean.description}" /></fieldset>
+	 		<fieldset class="recipe-form-bottom-fieldset"><h:commandButton value="submit" action="#{recipeModelBean.Search()}"></h:commandButton></fieldset>
 	 		
 	 		
 		</h:form>
