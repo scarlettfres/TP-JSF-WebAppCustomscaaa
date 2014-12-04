@@ -13,8 +13,13 @@ import java.util.Calendar;
 
 
 
+
+
+
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -28,7 +33,7 @@ import step4.model.UserBean;
 
 public class CommentaireControlerBean 
 {
-
+	
 	private CommentairesDao commentaireDao;
 	
 	public CommentaireControlerBean() 
@@ -39,25 +44,33 @@ public class CommentaireControlerBean
 	public String addCommentaire (CommentaireBean commentaire)
 	{
 		CommentaireBean com;
-		
-		String format = "dd/MM/yy H:mm:ss";
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> sessionMap = externalContext.getSessionMap();
+		UserBean user= new UserBean();
+		user= (UserBean) sessionMap.get("loggedUser");
+		if (user==null)
+		{
+			 return "test.xhtml";
+		}
+		else
+		{
+		 String format = "dd/MM/yy H:mm:ss";
+		 java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format );
+		 java.util.Date date = new java.util.Date();
+		 String strdate = (String)formater.format( date );
+		 com = new CommentaireBean(
+				 commentaire.getTitleRecipe(),
+				 user.getLogin(),
+				 strdate,
+				 commentaire.getRate(),
+				 commentaire.getMessage());
 
-		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format );
-		java.util.Date date = new java.util.Date();
+		 System.out.println("Validator Email: "+com.getTitleRecipe());
+		 this.commentaireDao.addCommentaire(com);
+		 loadAffichage(commentaire.getTitleRecipe())	;
+		 return "test.xhtml";
+		}
 
-		System.out.println( formater.format( date ) ); 
-		String strdate = (String)formater.format( date );
-		com = new CommentaireBean(
-				commentaire.getTitleRecipe(),
-				commentaire.getLoginUser(),
-				strdate,
-				commentaire.getRate(),
-				commentaire.getMessage());
-		
-		System.out.println("Validator Email: "+com.getTitleRecipe());
-		this.commentaireDao.addCommentaire(com);
-		loadAffichage(commentaire.getTitleRecipe())	;
-		return "test.xhtml";
 	}
 
 	
