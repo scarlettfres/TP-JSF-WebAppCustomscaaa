@@ -14,7 +14,11 @@ public final class DaoFabric {
 	private static volatile DaoFabric instance = null;
 
 	private String DB_HOST = "localhost";
+<<<<<<< HEAD
 	private String DB_PORT = "3306";
+=======
+	private String DB_PORT = "8889";
+>>>>>>> origin/master
 	private String DB_NAME = "step";
 	private String DB_USER = "root";
 	private String DB_PWD = "";

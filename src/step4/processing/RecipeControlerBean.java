@@ -23,6 +23,7 @@ public class RecipeControlerBean
 	private RecipesDao recipeDao;
 	private ArrayList<RecipeModelBean> recipeListModel;
 	private ArrayList<RecipeModelBean> searchedList;
+	private RecipeModelBean desiredRecipe;
 
 
 	public RecipeControlerBean() 
@@ -85,14 +86,30 @@ public class RecipeControlerBean
 		return returnPage;
 	}
 	
-	public String showDetailedRecipe(String recipeName)
+	public RecipeModelBean getDesiredRecipe() {
+		return desiredRecipe;
+	}
+
+
+
+	public void setDesiredRecipe(RecipeModelBean desiredRecipe) {
+		this.desiredRecipe = desiredRecipe;
+	}
+
+
+
+	public String showDetailedRecipe()
 	{
+		FacesContext fc = FacesContext.getCurrentInstance();
+	    Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+		
+		String recipeName = params.get("recipeName");
 		
 		String returnPage = "recipe-details";
-		
-		RecipeModelBean desiredRecipe = new RecipeModelBean();
 
 		desiredRecipe = this.recipeDao.getRecipe(recipeName);
+		CommentaireControlerBean Commentaires = new CommentaireControlerBean();
+		Commentaires.loadAffichage(recipeName);
 				
 		return returnPage;
 	}

@@ -1,5 +1,6 @@
 package step4.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
-public class RecipeListModelBean {
+public class RecipeListModelBean implements Serializable {
 	private List<RecipeModelBean> recipeList;
 	
 	public RecipeListModelBean() {

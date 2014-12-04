@@ -3,20 +3,40 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
 	template="template/template.xhtml">
-
+	
+	
 	<ui:define name="page_title">
-		<h1>#{recipeModelBean.getTitle()}</h1>
+		<h1>#{recipeControlerBean.desiredRecipe.getTitle()}</h1>
 		
 	</ui:define>
 	
 	<ui:define name="content">
-		<h3>#{recipeModelBean.getTitle()}</h3>
-		<p>Description:<br/> #{recipeModelBean.getDescription()}</p>
-		<p>Expertise: #{recipeModelBean.getExpertise()}</p>
-		<p>Duration: #{recipeModelBean.getDuration()}</p>
-		<p>Number of people: #{recipeModelBean.getNbpeople()}</p>
+		<p><a href="recipes.jsf">Back to list</a></p>
+		<h3>#{recipeControlerBean.desiredRecipe.getTitle()}</h3>
+		<p>Description:<br/> #{recipeControlerBean.desiredRecipe.getDescription()}</p>
+		<p>Expertise: #{recipeControlerBean.desiredRecipe.getExpertise()}</p>
+		<p>Duration: #{recipeControlerBean.desiredRecipe.getDuration()}</p>
+		<p>Number of people: #{recipeControlerBean.desiredRecipe.getNbpeople()}</p>
 		
+		<!-- items="${authors}" var="current"> -->
+		<c:forEach begin="0" end="#{commentaires.size()}" var="current">
+		
+			<p>
+			<h:outputText value=" Commentaire de : "/>
+			<h:outputText value="#{commentaires[commentaires.size()-current].loginUser}"/>
+			<h:outputText value=", Date : "/>
+			<h:outputText value="#{commentaires[commentaires.size()-current].date}"/>
+			</p>
+			<p class="commentaire_rating">
+			<p:rating stars="5" value="#{commentaires[commentaires.size()-current].rate}" readonly="true"/>
+			</p>
+			
+		   <p><h:outputText value="#{commentaires[commentaires.size()-current].message}"/></p> 
+		  
+		    
+		</c:forEach>
 		
 	</ui:define>
 	
