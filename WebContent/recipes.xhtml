@@ -19,22 +19,26 @@
 		</c:forEach> -->
 		<h:form>
 			
-	 	 	<h:dataTable value="#{recipeControlerBean.recipeListModel}" var="recipeModelBean">
+	 	 	<h:dataTable value="#{recipeControlerBean.recipeListModel}" var="recette">
 			   <h:column>    				
 			      <f:facet name="header">Title</f:facet>    				
-			      #{recipeModelBean.getTitle()}
+			      #{recette.getTitle()}
 			   </h:column>
 			   <h:column>
 			      <f:facet name="header">Expertise</f:facet>
-			      #{recipeModelBean.getExpertise()}
+			      #{recette.getExpertise()}
 			   </h:column>
 			   <h:column>
 			      <f:facet name="header">Duration</f:facet>
-			      #{recipeModelBean.getDuration()}
+			      #{recette.getDuration()}
 			   </h:column>
 			   <h:column>
 			      <f:facet name="header">Number of peole</f:facet>
-			      #{recipeModelBean.getNbpeople()}
+			      #{recette.getNbpeople()}
+			   </h:column>
+			   <h:column>
+			   	<f:facet name="header">Details</f:facet>
+			   	<h:commandButton value="details" action="#{recipeControlerBean.showDetailedRecipe('#{recette.getTitle()}')}"></h:commandButton>
 			   </h:column>
 			</h:dataTable>
 		</h:form>

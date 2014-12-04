@@ -1,7 +1,28 @@
-.recipe-form-main-fieldset
-
-.recipe-form-right-fieldset
+#recipe_form
+{
+	width:50%;
+	margin: auto;
+}
 
 .recipe-form-item
+{
+	width:90%;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
 
--recipe-form-bottom-fieldset
+#recipe_form label
+{
+	display: inline-block;
+	width: 150px;
+}
+
+.ui-rating
+{
+	display: inline-block;
+}
+
+#slider_wrapper
+{
+	display: inline-block;
+}
