@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="template/template.xhtml">
+
+	<ui:define name="page_title">
+		<h2>Search for recipe</h2>
+		
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form id="recipe_form">
+			<fieldset>
+		 		<label>Title</label><h:inputText type="text" name="title" value="#{recipeModelBean.title}" />
+		 		<label>Expertise</label> <p:rating stars="5" value="#{recipeModelBean.expertise}"/>
+		 		<label>Duration</label> <p:spinner min="5" max="100" stepFactor="5" value="#{recipeModelBean.duration}"/>
+		 		<label>Number of people</label>
+						<div id="slider_wrapper">
+						<p:inputText id="fInput1" value="#{recipeModelBean.nbpeople}"/>
+						<p:slider minValue="1" maxValue="10" for="fInput1" id="recipe_slider" styleClass="width-100"/>
+					</div>
+		 		<label>Type</label>
+		 		<h:selectOneMenu value="#{recipeModelBean.type}">
+				   	<f:selectItem itemValue="Entrée" itemLabel="Entrée" />
+				   	<f:selectItem itemValue="Plat" itemLabel="Plat" />
+				   	<f:selectItem itemValue="Dessert" itemLabel="Dessert" />
+				</h:selectOneMenu>
+	 		</fieldset>
+	 		<fieldset><label>Description</label> <h:inputText type="text" name="description" value="#{recipeModelBean.description}" /></fieldset>
+	 		<fieldset><h:commandButton value="submit" action="#{recipeModelBean.Search()}"></h:commandButton></fieldset>
+	 		
+	 		
+		</h:form>
+		
+		<h:outputText rendered="#{!statusBean.success}">#{statusBean.message}</h:outputText>
+		
+	</ui:define>
+	
+</ui:composition>
