@@ -78,7 +78,6 @@ public class CommentaireControlerBean
 	public void loadAffichage(String titleRecipe)
 	{
 		 ArrayList<CommentaireBean> liste_commentaire= commentaireDao.getAllCommentaires(titleRecipe);
-		
 		 ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		 Map<String, Object> sessionMap = externalContext.getSessionMap();
 		 sessionMap.remove("commentaires");// On efface la derniere sessionmap de commentaires pour créer une nouvelle 		

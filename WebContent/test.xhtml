@@ -1,23 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<head>
-<title>Step2: Form</title>
-</head>
-<body>
-	<h1>Login Page</h1>
-	
-	
-	
-	
-	<!--  <ui:decorate template="template/commentaireTemplate.xhtml">
-    <ui:param name="titleRecipe" value="une recette" />
-    </ui:decorate>-->
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="template/template.xhtml">
 
 
-
+	<ui:define name="page_title">
+		<h1>Main menu</h1>
+		
+	</ui:define>
+	
+	<ui:define name="content">
 	<h:form>
 		<table border="0">
 			<tr>
@@ -26,23 +21,14 @@
 						value="#{commentaireBean.titleRecipe}" required="true"
 						requiredMessage="Firstname is required">
 					</h:inputText></td>
-					
-					
-					
 
 			</tr>
+			
 			<tr>
-				<td>Loginuser</td>
-				<td><h:inputText id="loginuser"
-						value="#{commentaireBean.loginUser}" required="true"
-						requiredMessage="Lastname is required">
-					</h:inputText></td>
-			</tr>
-			<tr>
-				<td>rate</td>
-				<td><h:inputText id="rate" value="#{commentaireBean.rate}"
-						required="true" requiredMessage="Age is required">
-					</h:inputText></td>
+				<td><div class="recipe-form-item">
+		 			<label>Rate</label>
+		 			<p:rating stars="5" value="#{commentaireBean.rate}"/>
+		 		</div></td>
 			</tr>
 			<tr>
 				<td>message</td>
@@ -57,7 +43,7 @@
 				<td></td>
 				<td><h:commandButton value="OK"
 						action="#{commentaireControlerBean.addCommentaire(commentaireBean)}" >
-						<f:ajax execute="@form" listener="#{commentaireControlerBean.loadAffichage('ff')}" />
+						
 					</h:commandButton>
 				</td>
 			</tr>
@@ -66,7 +52,6 @@
 	
 		
 	<ui:decorate template="template/commentaireTemplate.xhtml"> </ui:decorate>
-		
+	</ui:define>
 	
-</body>
-</html>
+</ui:composition>
