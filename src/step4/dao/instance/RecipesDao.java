@@ -73,7 +73,7 @@ public class RecipesDao {
 
 			// Executer puis parcourir les r�sultats
 			java.sql.ResultSet rs = query
-					.executeQuery("SELECT * FROM recipes;");
+					.executeQuery("SELECT * FROM recipes");
 			while (rs.next()) {
 				// Cr�ation de  la recette
 				RecipeModelBean recipe = new RecipeModelBean(
@@ -99,7 +99,7 @@ public class RecipesDao {
 	public RecipeModelBean getRecipe(String Name)
 	{
 		RecipeModelBean desiredRecipe = new RecipeModelBean();
-
+		
 		// Cr�ation de la requ�te
 		java.sql.Statement query;
 
@@ -112,16 +112,25 @@ public class RecipesDao {
 			// Creation de l'�l�ment de requ�te
 			query = connection.createStatement();
 
+			
 			// Executer puis parcourir les r�sultats
-			java.sql.ResultSet rs = query
-					.executeQuery("SELECT * FROM recipes WHERE title = '"+Name+"';");
-
-				RecipeModelBean recipe = new RecipeModelBean(
+			String requete = "SELECT * FROM recipes WHERE title = '"+Name+"';";
+			java.sql.ResultSet rs = query.executeQuery(requete);
+			
+			if (!rs.next()) 	
+			{
+				return null;
+			}
+			else 
+			{
+			
+				System.out.println("resultat: "+rs.getString("description"));
+				desiredRecipe = new RecipeModelBean(
 						rs.getString("title"), rs.getString("description"),
 						rs.getInt("expertise"), rs.getInt("duration"),
 						rs.getInt("nbpeople"), rs.getString("type"));
-				System.out.println("Recipe : " + recipe);
-
+				System.out.println("Recipe : " + desiredRecipe);
+			}
 			rs.close();
 			query.close();
 			connection.close();
@@ -191,7 +200,6 @@ public class RecipesDao {
 				 }
 			}
 			requete += ";";
-			System.out.println("Requete : " + requete);
 			// Executer puis parcourir les r�sultats
 			java.sql.ResultSet rs = query
 					.executeQuery( requete );

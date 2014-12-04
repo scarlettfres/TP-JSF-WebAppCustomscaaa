@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -9,37 +7,27 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	
+
+
+
+	<ui:define name="commentaires">
+		<!-- items="${authors}" var="current"> -->
+		<c:forEach begin="0" end="#{commentaires.size()}" var="current">
+		
+			<p>
+			<h:outputText value=" Commentaire de : "/>
+			<h:outputText value="#{commentaires[commentaires.size()-current].loginUser}"/>
+			<h:outputText value=", Date : "/>
+			<h:outputText value="#{commentaires[commentaires.size()-current].date}"/>
+			</p>
+			<p class="commentaire_rating">
+			<p:rating stars="5" value="#{commentaires[commentaires.size()-current].rate}" readonly="true"/>
+			</p>
+			
+		   <p><h:outputText value="#{commentaires[commentaires.size()-current].message}"/></p> 
+		  
+		    
+		</c:forEach>
+	</ui:define>
 	
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="./css/style.css" />
-<title>commentaires</title>
-</head>
-
-
-
-<h:body>
-<!-- items="${authors}" var="current"> -->
-<c:forEach begin="0" end="#{commentaires.size()}" var="current">
-
-	<p>
-	<h:outputText value=" Commentaire de : "/>
-	<h:outputText value="#{commentaires[commentaires.size()-current].loginUser}"/>
-	<h:outputText value=", Date : "/>
-	<h:outputText value="#{commentaires[commentaires.size()-current].date}"/>
-	</p>
-	<p class="commentaire_rating">
-	<p:rating stars="5" value="#{commentaires[commentaires.size()-current].rate}" readonly="true"/>
-	</p>
-	
-   <p><h:outputText value="#{commentaires[commentaires.size()-current].message}"/></p> 
-  
-    
-</c:forEach>
-	
-
-
-
-</h:body>
-</html>
+</ui:composition>

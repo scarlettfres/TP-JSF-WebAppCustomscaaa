@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
 	template="template/template.xhtml">
 
 	<ui:define name="page_title">
@@ -13,6 +14,7 @@
 	<ui:define name="content">
 		<h3>Recipe List</h3>
 		<p><a href="add-recipe.jsf">Add recipe</a></p>
+		<p><a href="search-recipe.jsf">Search for recipe</a></p>
 		<h:outputText rendered="#{statusBean.success}" value="#{statusBean.message}"/>
 		<!-- <c:forEach items="#{recipeControlerBean.recipeListModel}" var="recipe">
 			#{recipe.title}
@@ -38,7 +40,9 @@
 			   </h:column>
 			   <h:column>
 			   	<f:facet name="header">Details</f:facet>
-			   	<h:commandButton value="details" action="#{recipeControlerBean.showDetailedRecipe('#{recette.getTitle()}')}"></h:commandButton>
+			   	<h:commandButton value="details" action="#{recipeControlerBean.showDetailedRecipe()}">
+			   		<f:param name="recipeName" value="#{recette.getTitle()}" />
+			   	</h:commandButton>
 			   </h:column>
 			</h:dataTable>
 		</h:form>

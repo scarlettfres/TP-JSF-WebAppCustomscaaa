@@ -34,7 +34,7 @@ import step4.model.UserBean;
 public class CommentaireControlerBean 
 {
 	
-	private CommentairesDao commentaireDao;
+	private static CommentairesDao commentaireDao;
 	
 	public CommentaireControlerBean() 
 	{
@@ -80,7 +80,7 @@ public class CommentaireControlerBean
 		 ArrayList<CommentaireBean> liste_commentaire= commentaireDao.getAllCommentaires(titleRecipe);
 		 ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		 Map<String, Object> sessionMap = externalContext.getSessionMap();
-		 sessionMap.remove("commentaires");// On efface la derniere sessionmap de commentaires pour créer une nouvelle 		
+		 sessionMap.remove("commentaires");// On efface la derniere sessionmap de commentaires pour crï¿½er une nouvelle 		
 		 sessionMap.put("commentaires", liste_commentaire);
 		/* for (int i=0;i<liste_commentaire.size();i++)
 		 {
